@@ -23,7 +23,7 @@ int my_getnbr(char const *str)
         res = res + str[i] - 48;
         i++;
     }
-    if (res > 2147483647 || res < -2147483648 || i >= 11)
+    if (res > 2147483648 || res < -2147483648 || i > 11)
         return (0);
     return (neg % 2) ? -1 * res : res;
 }
