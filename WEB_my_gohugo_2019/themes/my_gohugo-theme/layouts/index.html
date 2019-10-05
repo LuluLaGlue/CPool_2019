@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+{{ partial "sidebar.html" . }}
+<body>
+    <h1>Accueil</h1>
+    {{ $i := 0 }}
+    {{ range (where .Site.RegularPages "Section" "eq" "events").ByParam "when" }}
+    {{ if .Params.important }}
+    {{ if gt .Params.When (now.Format "2006-01-02")}}
+    {{ if lt $i 10 }}
+    <hr/>
+    {{ $i = add $i 1 }}
+    {{ if not .Params.draft }}
+    <h2>
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
+    </h2>
+    {{ end }}
+    {{ if .Params.draft }}
+    <h2>{{ .Title }}</h2>
+    {{ end }}
+    <h3>{{ .Params.Label }}</h3>
+    <h3>{{ dateFormat "02 January 2006" .Params.when }}</h3>
+    <img src="{{ .Params.photos }}" width="auto" height="200px">
+    <br/>
+    {{ end }}
+    {{ end }}
+    {{ end }}
+    {{ end }}
+</body>
+{{ partial "footer.html" . }}
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+{{ partial "sidebar.html" . }}
+<body>
+    <div class="single-asso">
+    <h1>{{ .Title }}</h1>
+    <h3>Date : {{ dateFormat "02 January 2006" .Params.when }}</h3>
+    <h3>Adresse : {{ .Params.Adress }}</h3>
+    <h3>Code postal : {{ .Params.PostalCode }}</h3>
+    <h3>Ville : {{ .Params.city }}</h3>
+    <h3>Label : {{ .Params.Label }}</h3>
+    <h3>{{ .Params.Description }}</h3>
+    <img src="{{ .Params.Photos }}" width="auto" height="200px"><br/>
+    <h3>Organise par : 
+        <a href="/associations/{{ .Params.Associations | lower }}">{{ .Params.Associations }}</a> 
+    </h3>   
+    <br/>
+    </div>    
+</body>
+{{ partial "footer.html" . }}
+</html>

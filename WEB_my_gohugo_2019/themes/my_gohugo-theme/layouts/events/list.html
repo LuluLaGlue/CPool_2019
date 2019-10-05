@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+{{ partial "sidebar.html" . }}
+<body>
+    <h1>Tous les evenements</h1>
+    <div class="centrer" color="red">
+        <h1>Evenements a venir</h1>
+    </div>
+    {{ partial "upcoming-events.html" . }}
+    <hr/>
+    <div class="centrer" color="red">
+        <h1>Evenements passes</h1>
+    </div>
+    {{ partial "archived-events.html" . }}
+</body>
+{{ partial "footer.html" . }}
+</html>

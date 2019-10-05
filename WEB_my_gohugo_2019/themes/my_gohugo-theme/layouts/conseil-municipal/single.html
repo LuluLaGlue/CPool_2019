@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+{{ partial "sidebar.html" . }}
+<body>
+    <div class="single-asso">
+    <h2>{{ .Params.FirstNames }} {{ .Params.LastName | upper }}</h2>
+    <h2>{{ .Params.Role }}</h2>
+    <img class="img-round" src="{{ .Params.Photo }}" width="auto" height="300px">
+    <br/>
+    </div>
+</body>
+{{ partial "footer.html" . }}
+</html>

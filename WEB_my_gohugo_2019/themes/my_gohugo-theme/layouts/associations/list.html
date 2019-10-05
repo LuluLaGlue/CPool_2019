@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+{{ partial "sidebar.html" . }}
+<body>
+    <h1>Associations</h1>
+    {{ range .Data.Pages }}
+    {{ if eq .Type "associations" }}
+    <hr/>
+    <h2>
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
+    </h2>
+    <br/>
+    {{ end }}
+    {{ end }}
+</body>
+{{ partial "footer.html" . }}
+</html>
