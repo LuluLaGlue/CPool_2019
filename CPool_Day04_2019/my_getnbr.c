@@ -5,7 +5,19 @@
 ** my_getnbr
 */
 
-#include <unistd.h>
+int my_check_sign(char const *str, int i, int neg)
+{
+    if (str[i] == '-')
+        neg++;
+    return (neg);
+}
+
+int my_atoi(char const *str, int i, int res)
+{
+    res *= 10;
+    res = res + str[i] - 48;
+    return (res);
+}
 
 int my_getnbr(char const *str)
 {
@@ -14,16 +26,19 @@ int my_getnbr(char const *str)
     long res = 0;
 
     while (str[i] == '-' || str[i] == '+'){
-        if (str[i] == '-')
-            neg++;
+        neg = my_check_sign(str, i, neg);
         i++;
     }
     while (str[i] >= '0' && str[i] <= '9' && str[i]){
-        res *= 10;
-        res = res + str[i] - 48;
+        res = my_atoi(str, i, res);
         i++;
     }
-    if (res > 2147483648 || res < -2147483648 || i > 11)
+    if ((neg % 2) && (-1 * res == -2147483647))
+        return (-2147483647);
+    if (res == 2147483648)
+        return (2147483648);
+    if (res > 2147483648 || res < -2147483648 ||
+    res * -1 == -2147483648)
         return (0);
     return (neg % 2) ? -1 * res : res;
 }

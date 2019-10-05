@@ -10,6 +10,8 @@ int my_is_prime(int nb);
 int my_find_prime_sup(int nb)
 {
     int i = nb;
+    if (i == 0 || i == 1 || i == 2)
+        return (2);
     while (i != 0){
         if (my_is_prime(i) == 1)
             return (i);
