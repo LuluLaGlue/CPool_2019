@@ -14,4 +14,7 @@ Test(my_strncmp, copy_five_characters_in_empty_array)
     cr_assert_eq(my_strncmp("Hello1", "Hello", 4), 0);
     cr_assert_eq(my_strncmp("Hello1", "Hello2", 6), -1);
     cr_assert_eq(my_strncmp("Hello2", "Hello1", 6), 1);
+    cr_assert_eq(my_strncmp("Hello1", "Hello", 6), 1);
+    cr_assert_eq(my_strncmp("Hello", "Hello1", 6), -1);
+
 }

@@ -14,4 +14,5 @@ Test(my_str_isalpha, test_if_str_is_alpha)
     cr_assert_eq(my_str_isalpha("alGJHYFINdfd"), 1);
     cr_assert_eq(my_str_isalpha("lkj4lkj"), 1);
     cr_assert_eq(my_str_isalpha("lkj4lk_kjh"), 0);
+    cr_assert_eq(my_str_isalpha("\n\f"), 0);
 }
