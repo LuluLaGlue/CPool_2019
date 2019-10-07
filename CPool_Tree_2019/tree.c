@@ -36,7 +36,7 @@ void tree(int size)
         }
         temp_size++;
     }
-    disp_bottom(size, my_columns(size) + total_lines * 2 -2, size, 1);
+    disp_bottom(size, my_columns(size) + total_lines * 2 - 2, size, 1);
 }
 
 int my_columns(int size)
@@ -108,4 +108,10 @@ int check_error(int size)
         write(2, "Size of tree must be positive.\n", 31);
         return (1);
     }
+}
+
+int main(void)
+{
+    tree(10);
+    return (0);
 }
