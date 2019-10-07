@@ -1,6 +1,0 @@
----
-firstNames: ""
-lastName: ""
-role: ""
-photo: ""
----
