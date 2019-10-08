@@ -16,15 +16,17 @@ int main(int argc, char *argv[])
     int i = 0;
     char *p;
 
-    while (i < argc - 1){
-        if (my_strcmp(argv[i], argv[i + 1]) > 0){
-            p = argv[i];
-            argv[i] = argv[i + 1];
-            argv[i + 1] = p;
+    for (int j = 0; j < argc - 1; j++){
+        while (i < argc - 1){
+            if (my_strcmp(argv[i], argv[i + 1]) > 0){
+                p = argv[i];
+                argv[i] = argv[i + 1];
+                argv[i + 1] = p;
+            }
+            i++;
         }
-        i++;
+        i = 0;
     }
-    i = 0;
     while (i < argc){
         my_putstr(argv[i]);
         my_putchar('\n');
