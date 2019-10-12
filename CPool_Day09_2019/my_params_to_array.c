@@ -8,6 +8,8 @@
 #include "my.h"
 #include <stdlib.h>
 
+char **my_str_to_word_array(char const *str);
+
 struct info_param *my_params_to_array(int ac, char **av)
 {
     struct info_param *result;

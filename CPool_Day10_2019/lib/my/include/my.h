@@ -7,15 +7,12 @@
 
 #ifndef MY_H_
 #define MY_H_
-    char **my_str_to_word_array(const char *str);
-    int my_strlen(char const *str);
-    int char_isalpha(char c);
-    int count_word(char const *str);
     void my_putchar(char c);
     int my_isneg(int nb);
     int my_put_nbr(int nb);
     void my_swap(int *a, int *b);
     int my_putstr(char const *str);
+    int my_strlen(char const *str);
     int my_getnbr(char const *str);
     void my_sort_int_array(int *tab, int size);
     int my_compute_power_rec(int nb, int power);
@@ -40,8 +37,17 @@
     int my_showmem(char const *str, int size);
     char *my_strcat(char *dest, char const *src);
     char *my_strncat(char *dest, char const *src, int nb);
+    char **my_str_to_word_array(const char *str);
     int my_show_word_array(char * const *tab);
     int my_showstr(char const *str);
     int my_str2len(char *const *str);
     int my_strcmp(char const *s1, char const *s2);
+    int char_isalpha(char c);
+    int count_word(char const *str);
+    int is_operator(char c);
+    int check_op(char **argv);
+    int check_error(char **argv, int argc);
+    int which_op(char **argv);
+    int do_op(char **argv);
+    char *my_strdup(char const *src);
 #endif

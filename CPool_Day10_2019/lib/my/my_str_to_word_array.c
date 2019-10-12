@@ -10,23 +10,22 @@
 
 int char_isalpha(char c)
 {
-    if (!(( c >= 48 && c <= 57)
-    || ( c >= 65 && c <= 90)
-    || ( c >= 97 && c <= 122)))
+    if (!(( c >= 48 && c <= 57) || ( c >= 65 && c <= 90) ||
+    ( c >= 97 && c <= 122)))
         return 0;
     return 1;
 }
 
 int count_word(char const *str)
 {
-    int count_word = 0;
+    int count = 0;
     for (int i = 0; str[i]; i++){
         if (!char_isalpha(str[i]) && char_isalpha(str[i - 1]))
-            count_word++;
+            count++;
     }
     if (char_isalpha(str[my_strlen(str)-1]))
-        return (count_word + 1);
-    return (count_word);
+        return (count + 1);
+    return (count);
 }
 
 char **my_str_to_word_array(char const *str)
