@@ -30,7 +30,7 @@
     char *my_strlowcase(char *str);
     char *my_strcapitalize(char *str);
     int my_str_isalpha(char str);
-    int my_str_isnum(char const *str);
+    int my_str_isnum(char *str);
     int my_str_islower(char const *str);
     int my_str_isupper(char const *str);
     int my_str_isprintable(char const *str);
@@ -46,16 +46,4 @@
     int count_word(char const *str);
     char *my_strdup(char const *src);
     int count_occ(char *str, char *letter);
-    char *check_case(char *str, char *letter);
-    float percentage(int occ, int size);
-    float *check_lang(char *letter, int perc, float *dif);
-    void print_result(char *letter, int occ);
-    void disp_float(float perc);
-    void disp_lang(int lang);
-    double check_english(int c);
-    double check_german(int c);
-    double check_french(int c);
-    double check_spanish(int c);
-    float lang_min(float *dif);
-    int check_error(char **argv, int i, int err);
 #endif

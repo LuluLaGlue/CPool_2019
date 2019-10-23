@@ -13,18 +13,17 @@
 int no_input(void)
 {
     int r_error;
-    char buffer[30000];
+    char buffer[31000];
 
     while (1){
-        r_error = read(0, buffer, 30000);
-        buffer[r_error] = '\0';
+        r_error = read(0, buffer, 31000);
         if (r_error == 0)
             return (0);
-        my_putstr(buffer);
+        write(1, &buffer, r_error);
     }
 }
 
-void check_error(char **argv, int i, int err)
+int check_error(char **argv, int i, int err)
 {
     if (argv[i][0] == '-')
         no_input();
@@ -43,28 +42,28 @@ void check_error(char **argv, int i, int err)
         write(2, argv[i], my_strlen(argv[i]));
         write(2, ": Is a directory\n", 17);
     }
+    return (0);
 }
 
 int main(int argc, char **argv)
 {
-    char buffer[30000];
-    int error, o_error, r_error;
-    int i = 1;
+    char buffer[31000];
+    int i, error, o_error, r_error;
     if (argc == 1)
         no_input();
-    while (i < argc){
+    for (i = 1; i < argc; i++){
         o_error = open(argv[i], O_RDONLY);
         if (o_error == -1)
             error = 1;
-        r_error = read(o_error, buffer, 30000);
-        buffer[r_error] = '\0';
+        r_error = read(o_error, buffer, 31000);
         if (r_error == -1)
             error = 1;
         if (error == 1)
             check_error(argv, i, errno);
         else
-            my_putstr(buffer);
+            write(1, &buffer, r_error);
         close(o_error);
         i++;
     }
+    return (0);
 }

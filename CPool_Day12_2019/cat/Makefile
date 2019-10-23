@@ -19,15 +19,20 @@ NAME	=	cat
 
 TEST = unit_tests
 
+.PHONY: all clean fclean re run
+
 all:
 	@make -C ../lib/my
 	@cd
 	@gcc -c $(SRC) $(LIB) $(CFLAGS) $(INC)
 	@gcc -o $(NAME) $(OBJ) $(LIB) $(CFLAGS) $(INC)
 
+run: unit_tests
+	./$(TEST)
+
 tests_run:
-	@gcc -o $(TEST) $(SRC) ../tests/test_cat.c --coverage -lcriterion
-	./unit_tests
+	@gcc -o $(TEST) $(SRC) ../tests/test_cat.c  $(LIB) $(INC) --coverage -lcriterion
+	@make run
 
 clean:
 	@make -sC ../lib/my clean
@@ -42,5 +47,3 @@ fclean:	clean
 	@cd
 
 re:	fclean  all
-
-.PHONY: all clean fclean re
