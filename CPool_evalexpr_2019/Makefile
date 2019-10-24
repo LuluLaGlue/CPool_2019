@@ -6,22 +6,14 @@
 ##
 
 SRC	=	main.c	\
-		evalexpr.c	\
-		add_sub.c	\
-		do_op.c	\
-		size.c	\
-		handle_str.c
+		eval_expr.c	\
 
 LIB	=	-L ./lib/my -lmy
 
 INC	=	-I ./include -I ./lib/my/include
 
 OBJ	=	main.o	\
-		evalexpr.o	\
-		add_sub.o	\
-		do_op.o	\
-		size.o	\
-		handle_str.o
+		eval_expr.o	\
 
 CFLAGS	=	-Wall -g $(INC)
 
