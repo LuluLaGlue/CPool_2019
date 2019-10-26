@@ -7,6 +7,9 @@
 
 SRC	=	main.c	\
 		eval_expr.c	\
+		convert.c	\
+		base.c	\
+		base_bis.c
 
 LIB	=	-L ./lib/my -lmy
 
@@ -14,10 +17,13 @@ INC	=	-I ./include -I ./lib/my/include
 
 OBJ	=	main.o	\
 		eval_expr.o	\
+		convert.o	\
+		base.o	\
+		base_bis.o
 
 CFLAGS	=	-Wall -g $(INC)
 
-NAME	=	eval_expr
+NAME	=	calc
 
 .PHONY: all clean fclean re
 
