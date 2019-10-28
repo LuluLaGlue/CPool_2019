@@ -26,6 +26,7 @@
     #define EXIT_MALLOC     84
     #define EXIT_READ       84
     #define EXIT_OPS        84
+    #define EXIT_EXPR       84
 
     #define SYNTAX_ERROR_MSG "syntax error"
     #define ERROR_MSG        "error"
@@ -33,20 +34,20 @@
     int parse_factors(char **expr);
     char *parse_sum(char **expr);
     char *eval_expr(char const *base, char const *ops
-    , char *expr, unsigned int size);
-    char *get_expr(unsigned int size);
+    , char *expr, int size);
+    char *get_expr(int size);
     void check_ops(char const *ops);
     void check_base(char const *b);
     int my_tiny_atoi(char **str);
-    unsigned int my_atoi(char *str);
+    int my_atoi(char *str);
     char *my_itoa(int nb);
     int my_int_len(int nb);
     char *base_num(char const *av, char const *base, char *res
-    , unsigned int size);
+    , int size);
     char *base_op(char const *av, char const *base, char *res
-    , unsigned int size);
-    char *reverse_base_num(char *res, char const *base, unsigned int size);
-    char *reverse_base_op(char *res, char const *base, unsigned int size);
-    char *rev_base_num_bis(char const *base, char *res, int i);
-    char *base_num_bis(char const *av, char const *base, char *res, int i);
+    , int size);
+    char *reverse_base_num(char *res, char const *base, int size);
+    char *reverse_base_op(char *res, char const *base, int size);
+    char rev_base_num_bis(char const *base, char res);
+    char base_num_bis(char const *av, char const *base, char res, int i);
 #endif

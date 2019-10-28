@@ -22,20 +22,21 @@ int my_int_len(int nb)
 
 char *my_itoa(int nb)
 {
-    int div, i;
+    int i, sign;
     char *str;
 
-    i = my_int_len(nb);
-    if (!(str = malloc(sizeof(char) * i)))
+    sign = nb;
+    if (sign < 0)
+        nb *= -1;
+    i = 0;
+    if (!(str = malloc(sizeof(char) * my_int_len(nb) + 1)))
         return (NULL);
-    i--;
-    div = 10;
-    str[i] = '\0';
-    while (i > 0){
-        str[i - 1] = (nb % div) + 48;
-        nb /= 10;
-        i--;
-    }
+    do {
+        str[i++] = nb % 10 + 48;
+    } while ((nb /= 10) > 0);
+    if (sign < 0)
+        str[i++] = '-';
+    str = my_revstr(str);
     return (str);
 }
 
@@ -51,11 +52,11 @@ int my_tiny_atoi(char **str)
     return (nbr);
 }
 
-unsigned int my_atoi(char *str)
+int my_atoi(char *str)
 {
-    unsigned int res = 0;
-    unsigned int i = 0;
-    unsigned int neg = 0;
+    int res = 0;
+    int i = 0;
+    int neg = 0;
     while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
     || str[i] == '\v' || str[i] == '\f' || str[i] == '\r'){
         i++;

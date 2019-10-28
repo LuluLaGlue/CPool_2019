@@ -8,7 +8,7 @@
 #include "./include/my.h"
 #include "./include/head.h"
 
-char *get_expr(unsigned int size)
+char *get_expr(int size)
 {
     char *expr;
 
@@ -45,9 +45,29 @@ void check_base(char const *b)
     }
 }
 
+int check_expr(char *expr)
+{
+    int i = 0;
+    int open = 0;
+    int close = 0;
+    for (i = 0; expr[i] > '9' || expr[i] < '0'; i++);
+    if ((expr[i - 1] == '-' || expr[i - 1] == '+')
+    && (expr[i - 2] == '-' || expr[i - 2] == '+'))
+        return (0);
+    for (i = 0; expr[i]; i++){
+        if (expr[i] == '(')
+            open++;
+        if (expr[i] == ')')
+            close++;
+    }
+    if (close != open)
+        return (0);
+    return (1);
+}
+
 int main(int ac, char **av)
 {
-    unsigned int size;
+    int size;
     char *expr;
 
     if (ac != 4){
@@ -60,6 +80,10 @@ int main(int ac, char **av)
     check_ops(av[2]);
     size = my_atoi(av[3]);
     expr = get_expr(size);
+    if (expr == NULL || check_expr(expr) == 0){
+        my_putstr(SYNTAX_ERROR_MSG);
+        return (EXIT_EXPR);
+    }
     my_putstr(eval_expr(av[1], av[2], expr, size));
     return (EXIT_SUCCESS);
 }

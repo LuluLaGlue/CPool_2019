@@ -72,7 +72,7 @@ char *parse_sum(char **expr)
 }
 
 char *eval_expr(char const *base, char const *ops,
-        char *expr, unsigned int size)
+        char *expr, int size)
 {
     char *res = malloc(sizeof(char) * size + 1);
     if (res == 0)

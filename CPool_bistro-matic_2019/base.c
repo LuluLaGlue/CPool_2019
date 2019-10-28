@@ -8,7 +8,7 @@
 #include "./include/my.h"
 #include "./include/head.h"
 
-char *base_num(char const *av, char const *base, char *res, unsigned int size)
+char *base_num(char const *av, char const *base, char *res, int size)
 {
     int i;
     for (i = 0; i <= size; i++){
@@ -22,13 +22,13 @@ char *base_num(char const *av, char const *base, char *res, unsigned int size)
             res[i] = '3';
         if (av[i] == base[4])
             res[i] = '4';
-        res = base_num_bis(av, base, res, i);
+        res[i] = base_num_bis(av, base, res[i], i);
     }
     res[i] = '\0';
     return (res);
 }
 
-char *reverse_base_num(char *res, char const *base, unsigned int size)
+char *reverse_base_num(char *res, char const *base, int size)
 {
     int i;
     for (i = 0; i <= size; i++){
@@ -42,12 +42,12 @@ char *reverse_base_num(char *res, char const *base, unsigned int size)
             res[i] = base[3];
         if (res[i] == '4')
             res[i] = base[4];
-        res = rev_base_num_bis(base, res, i);
+        res[i] = rev_base_num_bis(base, res[i]);
     }
     return (res);
 }
 
-char *base_op(char const *av, char const *base, char *res, unsigned int size)
+char *base_op(char const *av, char const *base, char *res, int size)
 {
     int i;
     for (i = 0; i <= size; i++){
@@ -70,7 +70,7 @@ char *base_op(char const *av, char const *base, char *res, unsigned int size)
     return (res);
 }
 
-char *reverse_base_op(char *res, char const *base, unsigned int size)
+char *reverse_base_op(char *res, char const *base, int size)
 {
     int i;
     for (i = 0; i <= size; i++){
