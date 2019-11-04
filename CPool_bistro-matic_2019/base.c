@@ -10,7 +10,7 @@
 
 char *base_num(char const *av, char const *base, char *res, int size)
 {
-    int i;
+    int i = 0;
     for (i = 0; i <= size; i++){
         if (av[i] == base[0])
             res[i] = '0';
@@ -30,7 +30,7 @@ char *base_num(char const *av, char const *base, char *res, int size)
 
 char *reverse_base_num(char *res, char const *base, int size)
 {
-    int i;
+    int i = 0;
     for (i = 0; i <= size; i++){
         if (res[i] == '0')
             res[i] = base[0];
@@ -44,12 +44,13 @@ char *reverse_base_num(char *res, char const *base, int size)
             res[i] = base[4];
         res[i] = rev_base_num_bis(base, res[i]);
     }
+    res[i] = '\0';
     return (res);
 }
 
 char *base_op(char const *av, char const *base, char *res, int size)
 {
-    int i;
+    int i = 0;
     for (i = 0; i <= size; i++){
         if (av[i] == base[0])
             res[i] = '(';
@@ -72,7 +73,7 @@ char *base_op(char const *av, char const *base, char *res, int size)
 
 char *reverse_base_op(char *res, char const *base, int size)
 {
-    int i;
+    int i = 0;
     for (i = 0; i <= size; i++){
         if (res[i] == '(')
             res[i] = base[0];
@@ -89,5 +90,6 @@ char *reverse_base_op(char *res, char const *base, int size)
         if (res[i] == '%')
             res[i] = base[6];
     }
+    res[i] = '\0';
     return (res);
 }

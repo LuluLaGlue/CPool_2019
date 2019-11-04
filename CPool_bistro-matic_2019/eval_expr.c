@@ -28,7 +28,6 @@ int parse_factors(char **expr)
 {
     int nbr, nbr2;
     char op;
-
     nbr = parse_number(expr);
     while (**expr){
         while (**expr == ' ')
@@ -38,6 +37,7 @@ int parse_factors(char **expr)
             return (nbr);
         (*expr)++;
         nbr2 = parse_number(expr);
+        check_null(op, nbr2);
         if (op == '/')
             nbr /= nbr2;
         else if (op == '*')
@@ -46,6 +46,14 @@ int parse_factors(char **expr)
             nbr %= nbr2;
     }
     return (nbr);
+}
+
+void check_null(char op, int nbr)
+{
+    if ((op == '%' || op == '/') && nbr == 0){
+        my_putstr("error");
+        exit(EXIT_OPS);
+    }
 }
 
 char *parse_sum(char **expr)
@@ -71,16 +79,17 @@ char *parse_sum(char **expr)
     return (my_itoa(nbr));
 }
 
-char *eval_expr(char const *base, char const *ops,
+void eval_expr(char const *base, char const *ops,
         char *expr, int size)
 {
-    char *res = malloc(sizeof(char) * size + 1);
+    char *res = malloc(sizeof(char) * (size + 1));
     if (res == 0)
-        return (NULL);
+        return ;
     res = base_num(expr, base, res, size);
     res = base_op(expr, ops, res, size);
     res = parse_sum(&res);
     res = reverse_base_num(res, base, size);
     res = reverse_base_op(res, ops, size);
-    return (res);
+    my_putstr(res);
+    free(res);
 }

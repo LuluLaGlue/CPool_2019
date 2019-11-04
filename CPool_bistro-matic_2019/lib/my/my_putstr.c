@@ -9,12 +9,7 @@
 
 int my_putstr(char *str)
 {
-    int i;
-
-    i = 0;
-    while (str[i]){
+    for (int i = 0; str[i]; i++)
         write(1, &str[i], 1);
-        i++;
-    }
     return (0);
 }

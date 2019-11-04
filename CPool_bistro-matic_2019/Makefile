@@ -9,7 +9,8 @@ SRC	=	main.c	\
 		eval_expr.c	\
 		convert.c	\
 		base.c	\
-		base_bis.c
+		base_bis.c	\
+		error.c
 
 LIB	=	-L ./lib/my -lmy
 
@@ -19,9 +20,10 @@ OBJ	=	main.o	\
 		eval_expr.o	\
 		convert.o	\
 		base.o	\
-		base_bis.o
+		base_bis.o	\
+		error.o
 
-CFLAGS	=	-Wall -g $(INC)
+CFLAGS	=	-Wall $(INC)
 
 NAME	=	calc
 
@@ -33,6 +35,11 @@ all:
 	@gcc -c $(SRC) $(LIB) $(CFLAGS) $(INC)
 	@gcc -o $(NAME) $(OBJ) $(LIB) $(CFLAGS) $(INC)
 
+g3:
+	@make -C ./lib/my
+	@cd
+	@gcc -g3 -c $(SRC) $(LIB) $(CFLAGS) $(INC)
+	@gcc -o $(NAME) $(OBJ) $(LIB) $(CFLAGS) $(INC)
 clean:
 	@make -sC ./lib/my clean
 	@rm -f $(OBJ)
@@ -43,3 +50,5 @@ fclean:	clean
 	@cd
 
 re:	fclean  all
+
+reg3: fclean g3

@@ -8,56 +8,18 @@
 #include "./include/my.h"
 #include "./include/head.h"
 
-char *get_expr(int size)
-{
-    char *expr;
-
-    if (size <= 0){
-        my_putstr(SYNTAX_ERROR_MSG);
-        exit(EXIT_SIZE_NEG);
-    }
-    expr = malloc(size + 1);
-    if (expr == 0){
-        my_putstr(ERROR_MSG);
-        exit(EXIT_MALLOC);
-    }
-    if (read(0, expr, size) != size){
-        my_putstr(ERROR_MSG);
-        exit(EXIT_READ);
-    }
-    expr[size] = 0;
-    return (expr);
-}
-
-void check_ops(char const *ops)
-{
-    if (my_strlen(ops) != 7){
-        my_putstr(SYNTAX_ERROR_MSG);
-        exit(EXIT_OPS);
-    }
-}
-
-void check_base(char const *b)
-{
-    if (my_strlen(b) < 2){
-        my_putstr(SYNTAX_ERROR_MSG);
-        exit(EXIT_BASE);
-    }
-}
-
 int check_expr(char *expr)
 {
     int i = 0;
     int open = 0;
     int close = 0;
-    for (i = 0; expr[i] > '9' || expr[i] < '0'; i++);
-    if ((expr[i - 1] == '-' || expr[i - 1] == '+')
-    && (expr[i - 2] == '-' || expr[i - 2] == '+'))
+    for (i = 0; (expr[i] > '9' || expr[i] < '0') && expr[i]; i++);
+    if ((expr[i - 1] == ')' || expr[i + 1] == '('))
         return (0);
-    for (i = 0; expr[i]; i++){
-        if (expr[i] == '(')
+    for (int j = 0; expr[j] != '\0'; j++){
+        if (expr[j] == '(')
             open++;
-        if (expr[i] == ')')
+        if (expr[j] == ')')
             close++;
     }
     if (close != open)
@@ -69,7 +31,7 @@ int main(int ac, char **av)
 {
     int size;
     char *expr;
-
+    display_info(ac, av);
     if (ac != 4){
         my_putstr("Usage: ");
         my_putstr(av[0]);
@@ -84,6 +46,7 @@ int main(int ac, char **av)
         my_putstr(SYNTAX_ERROR_MSG);
         return (EXIT_EXPR);
     }
-    my_putstr(eval_expr(av[1], av[2], expr, size));
+    eval_expr(av[1], av[2], expr, size);
+    free(expr);
     return (EXIT_SUCCESS);
 }

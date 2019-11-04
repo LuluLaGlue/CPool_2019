@@ -33,7 +33,7 @@
     int parse_number(char **expr);
     int parse_factors(char **expr);
     char *parse_sum(char **expr);
-    char *eval_expr(char const *base, char const *ops
+    void eval_expr(char const *base, char const *ops
     , char *expr, int size);
     char *get_expr(int size);
     void check_ops(char const *ops);
@@ -50,4 +50,7 @@
     char *reverse_base_op(char *res, char const *base, int size);
     char rev_base_num_bis(char const *base, char res);
     char base_num_bis(char const *av, char const *base, char res, int i);
+    void display_info(int ac, char **av);
+    void check_ops_bis(char const *ops, int i);
+    void check_null(char op, int nbr);
 #endif

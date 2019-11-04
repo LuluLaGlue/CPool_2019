@@ -26,16 +26,17 @@ char *my_itoa(int nb)
     char *str;
 
     sign = nb;
+    i = 0;
     if (sign < 0)
         nb *= -1;
-    i = 0;
-    if (!(str = malloc(sizeof(char) * my_int_len(nb) + 1)))
+    if (!(str = malloc(sizeof(char) * (my_int_len(nb) + 1))))
         return (NULL);
     do {
         str[i++] = nb % 10 + 48;
     } while ((nb /= 10) > 0);
     if (sign < 0)
         str[i++] = '-';
+    str[i] = '\0';
     str = my_revstr(str);
     return (str);
 }
